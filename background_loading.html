@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" type="text/css" href=""> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title>title</title>
+
+    <style>
+      #container {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-around;
+        align-items: center;
+        align-content: center;
+        min-width: 250px;
+      }
+      .thumb {
+
+      }
+
+    </style>
+
+    <script type="text/javascript">
+      var starttime = (new Date()).getTime();
+      function timeFromStart() { return (new Date()).getTime() - starttime; }
+
+      function loadSingleImageBackground() {
+        console.log("starting... " + timeFromStart());
+        $(new Image()).attr({
+          'src': SPARKLER_SRC,
+          'width': "50%"
+        }).on('load', function() {
+          console.log("image loaded " + timeFromStart()); $("#container img:first").after($(this).hide().fadeIn(500));
+        });
+
+        // }).on('load', function() { $(this).appendTo($("#container")).hide().fadeIn(1000); });
+        // let sparkler = new Image();
+        // sparkler.src = SPARKLER_SRC;
+        // $("#container").appendChild(sparkler);
+      }
+      // loadBackground();
+
+      function makeDaddyProud() {
+        $(".replacer").each(function() {
+          const IMGELT = $(this);
+          console.log($(this));
+          let fullResSource = $(this).data("fullres");
+          console.log("creating image obj... " + timeFromStart());
+
+          $(new Image()).attr('src', fullResSource).one('load', function() {
+            console.log("new image loaded " + timeFromStart());
+            IMGELT.animate({
+              opacity: 0.7,
+              width: "45%"
+            }, {
+              duration: 800,
+              complete: () => { IMGELT.attr('src', fullResSource); }
+            }).fadeTo(800, 1, () => console.log("done fading in " + timeFromStart()));
+
+            console.log(("finished swapping source " + timeFromStart()));
+
+          })
+        });
+      }
+
+      $(function() {
+        console.log("done loading document! " + timeFromStart());
+        makeDaddyProud();
+
+      })
+
+      $(window).on('load', function() {
+        console.log("done loading window! " + timeFromStart());
+      });
+    </script>
+  </head>
+  <body>
+<div id="container">
+
+
+  <img class="thumb replacer" data-fullres="https://i.4cdn.org/wg/1506467933135.jpg" src="https://i.4cdn.org/wg/1506467933135s.jpg">
+  <img class="thumb replacer" data-fullres="https://i.4cdn.org/wg/1506468696319.jpg" src="https://i.4cdn.org/wg/1506468696319s.jpg">
+  <img class="thumb replacer" data-fullres="https://i.4cdn.org/wg/1503611505217.jpg" src="https://i.4cdn.org/wg/1503611505217s.jpg">
+  <img class="thumb replacer" data-fullres="https://i.4cdn.org/wg/1506260675210.jpg" src="https://i.4cdn.org/wg/1506260675210s.jpg">
+  <img class="thumb replacer" data-fullres="https://i.4cdn.org/wg/1506285926327.jpg" src="https://i.4cdn.org/wg/1506285926327s.jpg">
+  <img class="thumb replacer" data-fullres="https://i.4cdn.org/wg/1506290262622.png" src="https://i.4cdn.org/wg/1506290262622s.jpg">
+  <img class="thumb replacer" data-fullres="https://i.4cdn.org/wg/1506402785643.jpg" src="https://i.4cdn.org/wg/1506402785643s.jpg">
+  <img class="thumb replacer" data-fullres="https://i.4cdn.org/wg/1506468594139.png" src="https://i.4cdn.org/wg/1506468594139s.jpg">
+  <img class="thumb replacer" data-fullres="https://i.4cdn.org/wg/1506361903524.jpg" src="https://i.4cdn.org/wg/1506361903524s.jpg">
+  <img class="thumb replacer" data-fullres="https://i.4cdn.org/wg/1506454487598.jpg" src="https://i.4cdn.org/wg/1506454487598s.jpg">
+  <img class="thumb replacer" data-fullres="https://i.4cdn.org/wg/1506465089479.jpg" src="https://i.4cdn.org/wg/1506465089479s.jpg">
+  <img class="thumb replacer" data-fullres="https://i.4cdn.org/wg/1506465166529.jpg" src="https://i.4cdn.org/wg/1506465166529s.jpg">
+  <img class="thumb replacer" data-fullres="https://i.4cdn.org/wg/1506465237036.jpg" src="https://i.4cdn.org/wg/1506465237036s.jpg">
+  <img class="thumb replacer" data-fullres="https://i.4cdn.org/wg/1506261312355.jpg" src="https://i.4cdn.org/wg/1506261312355s.jpg">
+  <img class="thumb replacer" data-fullres="https://i.4cdn.org/wg/1506451819006.jpg" src="https://i.4cdn.org/wg/1506451819006s.jpg">
+  <img class="thumb replacer" data-fullres="https://i.4cdn.org/wg/1506453946063.jpg" src="https://i.4cdn.org/wg/1506453946063s.jpg">
+  <img class="thumb replacer" data-fullres="https://i.4cdn.org/wg/1506466190003.jpg" src="https://i.4cdn.org/wg/1506466190003s.jpg">
+  <img class="thumb replacer" data-fullres="https://i.4cdn.org/wg/1506466936742.gif" src="https://i.4cdn.org/wg/1506466936742s.jpg">
+  <img class="thumb replacer" data-fullres="https://i.4cdn.org/wg/1506468007972.jpg" src="https://i.4cdn.org/wg/1506468007972s.jpg">
+
+
+</div>
+
+
+<script>
+
+
+
+
+
+</script>
+  </body>
+</html>

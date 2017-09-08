@@ -32,31 +32,65 @@ div {border: 1px solid orange;}
   font-size: 1.6em;
   color: #813772;
   margin: 0px;
-  padding: 0px 10px 20px 25px;
+  padding: 10px 10px 20px 25px;
   font-family: 'Roboto', 'Ubuntu', sans-serif;
   margin-left: 15px;
   /*background-color: hsla(206, 86%, 17%, 0.3);*/
 }
 
+/* ---BEGIN FILTER RULES--- */
+
 .filtering {
+  overflow: hidden;
   font-size: 1.2em;
   font-style: italic;
   opacity: 0.85;
   background-color: hsla(206, 86%, 17%, 0.3); /* dark blue */
   border: 1px solid hsl(206, 86%, 17%);
-  padding: 5px 0 5px 7px;
-}
-.filtering h2 {
-  margin: 5px auto 5px auto;
+  padding: 5px 7px;
+  max-height: 5000px;
+  transition: max-height 0.5s cubic-bezier(1,.06,.28,.69);
+  /* below better? */
+  /*transition: max-height 0.5s cubic-bezier(1.000, 0, 1.000, 0);*/
 }
 
-.filter-categories {
+.hideFiltering {
+  max-height: 23px;
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0, 1.000, 0, 1.000);
+}
+
+#minimize-filters {
+  display: block;
+  padding-left: 3px;
+  max-width: 8em;
+  min-width: 250px;
+  cursor: pointer;
+  transition: all 150ms;
+}
+#minimize-filters:hover {
+  color: #b82601;
+  transform: scale(1.015);
+  transition: all 150ms;
+}
+
+.filter-group {
+  border-bottom: 1px dotted #062f4f;
+  padding-bottom: 7px;
+}
+.last-filter {
+  border-bottom: 0px;
+}
+.filter-header h2 {
+  margin: 5px auto 5px auto;
+}
+.filter-items {
   display: flex;
   flex-flow: row wrap;
   padding-left: 5px;
 }
 
-.filter-link {
+.filter-item {
   color: #b82601;
   text-decoration: none;
   text-transform: capitalize;
@@ -65,13 +99,15 @@ div {border: 1px solid orange;}
   background: url(../images/unchecked_white.png) no-repeat 0px 6px;
   transition: all .2s ease-in-out;
 }
-.filter-link:hover {
+.filter-item:hover {
   font-weight: bold;
   transform: scale(1.03);
 }
-.filter-link.selected {
+.filter-item.selected {
   background: url(../images/checked_white.png) no-repeat 0px 6px;
 }
+
+/* ---END FILTER RULES--- */
 
 .gallery {
   display: flex;
@@ -84,12 +120,25 @@ div {border: 1px solid orange;}
   flex-direction: row;
   align-items: center;
   padding: .7em .7em .7em 0;
+  transform: scale(1.0);
+  overflow: hidden;
+  opacity: 1;
+  transition-property: flex, padding, transform, opacity;
+  transition-duration: .5s;
+}
+
+.thumblink.hideThumb {
+  flex: 0 0 0;
+  padding: 0;
+  transform: scale(0.1);
+  opacity: 0;
+  transition: all .7s ease;
 }
 
 .thumblink img {
   transition: all .2s ease-in-out;
 }
-.thumblink img:hover { transform: scale(1.08); }
+.thumblink img:hover { transform: scale(1.05);}
 
 @media screen and (min-width: 500px) {
   .title-graphic {

@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="./css/master.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto|Ubuntu" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- make sure this loads as soon as possible after jQuery -->
+    <script src="./scripts/firstLoad.js"></script>
+    <script async src="https://use.fontawesome.com/10ae14b244.js"></script>
     <title>Tappezzare Flexbox Scratchpad</title>
   </head>
   <body>
@@ -13,23 +17,39 @@
     </div>
 
     <div class="centered">
+
       <div class="filtering">
-        <h2>Categories</h2>
-        <div class="filter-categories">
-          <a class="filter-link selected" data-category="all" href="#">all categories</a>
-          <a class="filter-link" data-category="nature" href="#">nature</a>
-          <a class="filter-link" data-category="abstract" href="#">abstract</a>
-          <a class="filter-link" data-category="water" href="#">water</a>
-          <a class="filter-link" data-category="people" href="#">people</a>
+        <div>
+          <a id="minimize-filters">
+            <i id="minimize-filters-button" class="fa fa-minus-square-o" aria-hidden="true"></i>
+            <span id="minimize-filters-text">hide filtering options</span>
+          </a>
         </div>
-      </div>
+        <div id="filter-subjects" class="filter-group">
+          <div class="filter-header"><h2>Subjects</h2></div>
+          <div class="filter-items">
+          </div> <!-- filter-items -->
+        </div> <!-- filter-group -->
+
+        <div id="filter-sources" class="filter-group last-filter">
+          <div class="filter-header"><h2>Sources</h2></div>
+          <div class="filter-items">
+          </div> <!-- filter-items -->
+        </div> <!-- filter-group -->
+
+      </div> <!-- filtering -->
+
       <div class="gallery">
-        <a class="thumblink"><img src="./external_images/1504647202931s.jpg"></a>
-        <a class="thumblink"><img src="./external_images/1504647444750s.jpg"></a>
-        <a class="thumblink"><img src="./external_images/1504666794850s.jpg"></a>
-        <a class="thumblink"><img src="./external_images/1504669911042s.jpg"></a>
-        <a class="thumblink"><img src="./external_images/1504817962976s.jpg"></a>
-      </div>
-    </div>
+        <a class="thumblink" data-source="4chan" data-subject="water nature"><img src="./external_images/1504647202931s.jpg"></a>
+        <a class="thumblink" data-source="4chan" data-subject="abstract"><img src="./external_images/1504647444750s.jpg"></a>
+        <a class="thumblink" data-source="reddit" data-subject="nature flowers"><img src="./external_images/1504666794850s.jpg"></a>
+        <a class="thumblink" data-source="reddit" data-subject="nature"><img src="./external_images/1504669911042s.jpg"></a>
+        <a class="thumblink" data-source="someotherthing" data-subject="animals"><img src="./external_images/1504817962976s.jpg"></a>
+      </div> <!-- gallery -->
+
+      <form><input type="button" value="takeout!"></form>
+
+    </div> <!-- centered -->
+    <script src="./scripts/master.js"></script>
   </body>
 </html>
