@@ -1,0 +1,124 @@
+html {
+  font-size: 10px;
+  background-color: black;
+  color: #b82601;
+  min-width: 250px;
+  background: url(../images/wood_background_dark40.jpg) no-repeat center center fixed;
+  background-size: cover;
+}
+
+/* BEGIN borders for debugging */
+
+/*.centered {border: 1px solid green;}
+div {border: 1px solid orange;}
+.gallery .thumblink {border: 1px solid white;}
+.gallery .thumblink img {border: 1px solid red;}*/
+
+/* END borders for debugging */
+
+.title-graphic {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 40px;
+  height: 100%;
+  background: url(../images/title_small.png) no-repeat 5px 5px;
+}
+.title-graphic h1 {
+  display: none;
+}
+
+.centered {
+  font-size: 1.6em;
+  color: #813772;
+  margin: 0px;
+  padding: 0px 10px 20px 25px;
+  font-family: 'Roboto', 'Ubuntu', sans-serif;
+  margin-left: 15px;
+  /*background-color: hsla(206, 86%, 17%, 0.3);*/
+}
+
+.filtering {
+  font-size: 1.2em;
+  font-style: italic;
+  opacity: 0.85;
+  background-color: hsla(206, 86%, 17%, 0.3); /* dark blue */
+  border: 1px solid hsl(206, 86%, 17%);
+  padding: 5px 0 5px 7px;
+}
+.filtering h2 {
+  margin: 5px auto 5px auto;
+}
+
+.filter-categories {
+  display: flex;
+  flex-flow: row wrap;
+  padding-left: 5px;
+}
+
+.filter-link {
+  color: #b82601;
+  text-decoration: none;
+  text-transform: capitalize;
+  font-variant: small-caps;
+  padding: 3px 20px 3px 20px;
+  background: url(../images/unchecked_white.png) no-repeat 0px 6px;
+  transition: all .2s ease-in-out;
+}
+.filter-link:hover {
+  font-weight: bold;
+  transform: scale(1.03);
+}
+.filter-link.selected {
+  background: url(../images/checked_white.png) no-repeat 0px 6px;
+}
+
+.gallery {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+}
+
+.thumblink {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: .7em .7em .7em 0;
+}
+
+.thumblink img {
+  transition: all .2s ease-in-out;
+}
+.thumblink img:hover { transform: scale(1.08); }
+
+@media screen and (min-width: 500px) {
+  .title-graphic {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 65px;
+    height: 100%;
+    background: url(../images/title_medium.png) no-repeat 5px 5px;
+  }
+
+  .centered {
+    margin-left: 40px;
+  }
+
+}
+
+@media screen and (min-width: 700px) {
+  .title-graphic {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100px;
+    height: 100%;
+    background: url(../images/title_large.png) no-repeat 5px 5px;
+  }
+
+  .centered {
+    margin-left: 80px;
+  }
+
+}
