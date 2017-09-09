@@ -16,16 +16,27 @@
     <div class="centered">
 
       <div class="filtering">
-        <div class="categorical">
-          <h2>Categories</h2>
-          <div class="filter-categories">
-            <a class="filter-link selected" data-category="all" href="#">all categories</a>
-            <a class="filter-link" data-category="nature" href="#">nature</a>
-            <a class="filter-link" data-category="abstract" href="#">abstract</a>
-            <a class="filter-link" data-category="water" href="#">water</a>
-            <a class="filter-link" data-category="people" href="#">people</a>
-          </div> <!-- filter-categories -->
-        </div> <!-- categorical -->
+        <div class="filter-group">
+          <div class="filter-header"><h2>Categories</h2></div>
+          <div class="filter-items">
+            <a class="filter-item selected" data-category="all" href="#">all categories</a>
+            <a class="filter-item" data-category="nature" href="#">nature</a>
+            <a class="filter-item" data-category="abstract" href="#">abstract</a>
+            <a class="filter-item" data-category="water" href="#">water</a>
+            <a class="filter-item" data-category="people" href="#">people</a>
+          </div> <!-- filter-items -->
+        </div> <!-- filter-group -->
+
+        <div id="last-filter" class="filter-group">
+          <div class="filter-header"><h2>Moods</h2></div>
+          <div class="filter-items">
+            <a class="filter-item selected" data-mood="all" href="#">all moods</a>
+            <a class="filter-item" data-mood="dark" href="#">dark</a>
+            <a class="filter-item" data-mood="bright" href="#">bright</a>
+            <a class="filter-item" data-mood="retro" href="#">retro</a>
+            <a class="filter-item" data-mood="sleek" href="#">sleek</a>
+          </div> <!-- filter-items -->
+        </div> <!-- filter-group -->
 
       </div> <!-- filtering -->
 
