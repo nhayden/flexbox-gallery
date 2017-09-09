@@ -14,23 +14,41 @@
     </div>
 
     <div class="centered">
+
       <div class="filtering">
-        <h2>Categories</h2>
-        <div class="filter-categories">
-          <a class="filter-link selected" data-category="all" href="#">all categories</a>
-          <a class="filter-link" data-category="nature" href="#">nature</a>
-          <a class="filter-link" data-category="abstract" href="#">abstract</a>
-          <a class="filter-link" data-category="water" href="#">water</a>
-          <a class="filter-link" data-category="people" href="#">people</a>
-        </div>
-      </div>
+        <div class="categorical">
+          <h2>Categories</h2>
+          <div class="filter-categories">
+            <a class="filter-link selected" data-category="all" href="#">all categories</a>
+            <a class="filter-link" data-category="nature" href="#">nature</a>
+            <a class="filter-link" data-category="abstract" href="#">abstract</a>
+            <a class="filter-link" data-category="water" href="#">water</a>
+            <a class="filter-link" data-category="people" href="#">people</a>
+          </div> <!-- filter-categories -->
+        </div> <!-- categorical -->
+
+      </div> <!-- filtering -->
+
       <div class="gallery">
         <a class="thumblink"><img src="./external_images/1504647202931s.jpg"></a>
         <a class="thumblink"><img src="./external_images/1504647444750s.jpg"></a>
         <a class="thumblink"><img src="./external_images/1504666794850s.jpg"></a>
         <a class="thumblink"><img src="./external_images/1504669911042s.jpg"></a>
         <a class="thumblink"><img src="./external_images/1504817962976s.jpg"></a>
-      </div>
-    </div>
+      </div> <!-- gallery -->
+
+      <form><input type="button" value="takeout!"></form>
+
+    </div> <!-- centered -->
+
+    <script>
+    $(document).ready(function() {
+      $(":button").click(function() {
+          const ELT = $('.gallery a:nth-child(3)');
+          //console.log(ELT);
+          ELT.toggleClass("hideThumb");
+      });
+    });
+    </script>
   </body>
 </html>
