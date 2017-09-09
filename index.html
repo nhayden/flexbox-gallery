@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="./css/master.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto|Ubuntu" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://use.fontawesome.com/10ae14b244.js"></script>
     <title>Tappezzare Flexbox Scratchpad</title>
   </head>
   <body>
@@ -15,7 +16,8 @@
 
     <div class="centered">
 
-      <div class="filtering">
+      <div class="filtering hideFiltering">
+        <i class="fa fa-minus-square-o expander" aria-hidden="true"></i>
         <div class="filter-group">
           <div class="filter-header"><h2>Categories</h2></div>
           <div class="filter-items">
@@ -55,9 +57,20 @@
     <script>
     $(document).ready(function() {
       $(":button").click(function() {
-          const ELT = $('.gallery a:nth-child(3)');
-          //console.log(ELT);
-          ELT.toggleClass("hideThumb");
+        const ELT = $('.gallery a:nth-child(3)');
+        //console.log(ELT);
+        ELT.toggleClass("hideThumb");
+      });
+      $(".expander").click(function() {
+        const _this = $(this);
+        console.log(_this);
+        if (_this.hasClass("fa-minus-square-o")) {
+          _this.removeClass("fa-minus-square-o");
+          _this.addClass("fa-plus-square-o");
+        } else {
+          _this.removeClass("fa-plus-square-o");
+          _this.addClass("fa-minus-square-o");
+        }
       });
     });
     </script>
