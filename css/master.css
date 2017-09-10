@@ -48,7 +48,7 @@ div {border: 1px solid orange;}
   background-color: hsla(206, 86%, 17%, 0.3); /* dark blue */
   border: 1px solid hsl(206, 86%, 17%);
   padding: 5px 7px;
-  max-height: 4000px;
+  max-height: 5000px;
   transition: max-height 0.5s cubic-bezier(1,.06,.28,.69);
   /* below better? */
   /*transition: max-height 0.5s cubic-bezier(1.000, 0, 1.000, 0);*/
@@ -60,8 +60,18 @@ div {border: 1px solid orange;}
   transition: all 0.5s cubic-bezier(0, 1.000, 0, 1.000);
 }
 
-#minimize-filters:hover {
+#minimize-filters {
+  display: block;
+  padding-left: 3px;
+  max-width: 8em;
+  min-width: 250px;
   cursor: pointer;
+  transition: all 150ms;
+}
+#minimize-filters:hover {
+  color: #b82601;
+  transform: scale(1.015);
+  transition: all 150ms;
 }
 
 .filter-group {
