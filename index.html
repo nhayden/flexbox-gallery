@@ -25,35 +25,26 @@
             <span id="minimize-filters-text">hide filtering options</span>
           </a>
         </div>
-        <div class="filter-group">
-          <div class="filter-header"><h2>Categories</h2></div>
+        <div id="filter-subjects" class="filter-group">
+          <div class="filter-header"><h2>Subjects</h2></div>
           <div class="filter-items">
-            <a class="filter-item selected" data-category="all" href="#">all categories</a>
-            <a class="filter-item" data-category="nature" href="#">nature</a>
-            <a class="filter-item" data-category="abstract" href="#">abstract</a>
-            <a class="filter-item" data-category="water" href="#">water</a>
-            <a class="filter-item" data-category="people" href="#">people</a>
           </div> <!-- filter-items -->
         </div> <!-- filter-group -->
 
-        <div id="last-filter" class="filter-group">
+        <div id="filter-sources" class="filter-group last-filter">
           <div class="filter-header"><h2>Sources</h2></div>
           <div class="filter-items">
-            <a class="filter-item selected" data-source="all" href="#">all sources</a>
-            <a class="filter-item" data-source="4chan" href="#">4chan</a>
-            <a class="filter-item" data-source="reddit" href="#">reddit</a>
-            <a class="filter-item" data-source="someotherthing" href="#">someotherthing</a>
           </div> <!-- filter-items -->
         </div> <!-- filter-group -->
 
       </div> <!-- filtering -->
 
       <div class="gallery">
-        <a class="thumblink"><img src="./external_images/1504647202931s.jpg"></a>
-        <a class="thumblink"><img src="./external_images/1504647444750s.jpg"></a>
-        <a class="thumblink"><img src="./external_images/1504666794850s.jpg"></a>
-        <a class="thumblink"><img src="./external_images/1504669911042s.jpg"></a>
-        <a class="thumblink"><img src="./external_images/1504817962976s.jpg"></a>
+        <a class="thumblink" data-source="4chan" data-subject="water nature"><img src="./external_images/1504647202931s.jpg"></a>
+        <a class="thumblink" data-source="4chan" data-subject="abstract"><img src="./external_images/1504647444750s.jpg"></a>
+        <a class="thumblink" data-source="reddit" data-subject="nature flowers"><img src="./external_images/1504666794850s.jpg"></a>
+        <a class="thumblink" data-source="reddit" data-subject="nature"><img src="./external_images/1504669911042s.jpg"></a>
+        <a class="thumblink" data-source="someotherthing" data-subject="animals"><img src="./external_images/1504817962976s.jpg"></a>
       </div> <!-- gallery -->
 
       <form><input type="button" value="takeout!"></form>

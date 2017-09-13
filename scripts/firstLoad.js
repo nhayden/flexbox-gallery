@@ -1,7 +1,7 @@
 /* anything that needs to happen ASAP after jQuery loads
 
 */
-
+"use strict";
 // $(function() { // modern jQuery doesn't require '$(document).ready()' idiom
 //   "use strict";
 //   const filteringDiv = $(".filtering");
