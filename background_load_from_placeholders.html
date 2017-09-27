@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" type="text/css" href=""> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title>title</title>
+
+    <style>
+      #container {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-around;
+        align-items: center;
+        align-content: center;
+        min-width: 250px;
+      }
+      .placeholder {
+        width: 40%;
+      }
+      .intermediate {
+        opacity: 0.7;
+        transition: all 500ms;
+      }
+      .loaded {
+        opacity: 1;
+        transition: all 500ms;
+      }
+
+    </style>
+
+    <script type="text/javascript">
+      var starttime = (new Date()).getTime();
+      function timeFromStart() { return (new Date()).getTime() - starttime; }
+
+      function loadSingleImageBackground() {
+        console.log("starting... " + timeFromStart());
+        $(new Image()).attr({
+          'src': SPARKLER_SRC,
+          'width': "50%"
+        }).on('load', function() {
+          console.log("image loaded " + timeFromStart()); $("#container img:first").after($(this).hide().fadeIn(500));
+        });
+
+        // }).on('load', function() { $(this).appendTo($("#container")).hide().fadeIn(1000); });
+        // let sparkler = new Image();
+        // sparkler.src = SPARKLER_SRC;
+        // $("#container").appendChild(sparkler);
+      }
+      // loadBackground();
+
+      var imgNum = 1;
+
+      function preloadSerial() {
+        let fullResUrls = $(".replacer");
+        preload(fullResUrls);
+      }
+      function preload(fullResUrls, index) {
+        if (index === undefined) index = 0;
+        if (fullResUrls !== undefined && index < fullResUrls.length) {
+          let imgelt = fullResUrls.eq(index),
+              fullResSource = imgelt.data("fullres"),
+              preloadImg = new Image();
+          preloadImg.onload = function() {
+            // start preloading the next
+            preload(fullResUrls, index+1);
+            imgelt.attr('src', fullResSource);
+            imgelt.addClass("intermediate");
+            setTimeout(function() {
+              imgelt.addClass("loaded");
+              imgelt.removeClass("intermediate");
+            }, 500);
+          }
+          preloadImg.src = fullResSource;
+        }
+      }
+
+      function makeDaddyProud() {
+        $(".replacer").each(function() {
+          const IMGELT = $(this);
+          console.log($(this));
+          let fullResSource = $(this).data("fullres");
+          console.log("creating image obj... " + timeFromStart());
+
+          $(new Image()).attr('src', fullResSource).one('load', function() {
+            console.log("new image loaded " + timeFromStart());
+            IMGELT.animate({
+              opacity: 0.7,
+            }, {
+              duration: 500,
+              complete: () => { IMGELT.attr('src', fullResSource); }
+            }).fadeTo(500, 1, () => console.log("done fading in " + timeFromStart()));
+
+            console.log(("finished swapping source " + timeFromStart()));
+
+          })
+        });
+      }
+
+      $(function() {
+        console.log("done loading document! " + timeFromStart());
+        makeDaddyProud(); // (preloadParallel)
+        // preloadSerial();
+
+      })
+
+      $(window).on('load', function() {
+        console.log("done loading window! " + timeFromStart());
+      });
+    </script>
+  </head>
+  <body>
+<div id="container">
+
+  <!-- <img class="replacer thumb" data-fullres="https://i.4cdn.org/wg/1506017263977.jpg" src="https://i.4cdn.org/wg/1506017263977s.jpg">
+  <img class="replacer thumb" data-fullres="https://i.4cdn.org/wg/1505842096940.jpg" src="https://i.4cdn.org/wg/1505842096940s.jpg">
+  <img class="replacer thumb" data-fullres="https://i.4cdn.org/wg/1506016053953.jpg" src="https://i.4cdn.org/wg/1506016053953s.jpg">
+  <img class="replacer thumb" data-fullres="https://i.4cdn.org/wg/1504991693131.jpg" src="https://i.4cdn.org/wg/1504991693131s.jpg"> -->
+
+
+  <img class="placeholder replacer" data-fullres="https://i.4cdn.org/wg/1506471593837.jpg" src="http://www.havenconservatories.co.uk/wp-content/uploads/2015/04/placeholder-large.jpg">
+  <img class="placeholder replacer" data-fullres="https://i.4cdn.org/wg/1506478907645.jpg" src="http://www.havenconservatories.co.uk/wp-content/uploads/2015/04/placeholder-large.jpg">
+  <img class="placeholder replacer" data-fullres="https://i.4cdn.org/wg/1506481606546.jpg" src="http://www.havenconservatories.co.uk/wp-content/uploads/2015/04/placeholder-large.jpg">
+  <img class="placeholder replacer" data-fullres="https://i.4cdn.org/wg/1506482286822.jpg" src="http://www.havenconservatories.co.uk/wp-content/uploads/2015/04/placeholder-large.jpg">
+  <img class="placeholder replacer" data-fullres="https://i.4cdn.org/wg/1506450598463.jpg" src="http://www.havenconservatories.co.uk/wp-content/uploads/2015/04/placeholder-large.jpg">
+  <img class="placeholder replacer" data-fullres="https://i.4cdn.org/wg/1506477488466.jpg" src="http://www.havenconservatories.co.uk/wp-content/uploads/2015/04/placeholder-large.jpg">
+  <img class="placeholder replacer" data-fullres="https://i.4cdn.org/wg/1506477526541.jpg" src="http://www.havenconservatories.co.uk/wp-content/uploads/2015/04/placeholder-large.jpg">
+  <img class="placeholder replacer" data-fullres="https://i.4cdn.org/wg/1506477823090.jpg" src="http://www.havenconservatories.co.uk/wp-content/uploads/2015/04/placeholder-large.jpg">
+  <img class="placeholder replacer" data-fullres="https://i.4cdn.org/wg/1506478700464.jpg" src="http://www.havenconservatories.co.uk/wp-content/uploads/2015/04/placeholder-large.jpg">
+  <img class="placeholder replacer" data-fullres="https://i.4cdn.org/wg/1503618861387.png" src="http://www.havenconservatories.co.uk/wp-content/uploads/2015/04/placeholder-large.jpg">
+
+
+
+</div>
+
+
+<script>
+
+
+
+
+
+</script>
+  </body>
+</html>
