@@ -17,7 +17,17 @@
         min-width: 250px;
       }
       .thumb {
-
+        width: 250px;
+      }
+      .thumb.intermediate {
+        width: 40%;
+        opacity: 0.7;
+        transition: all 500ms;
+      }
+      .thumb.loaded {
+        width: 40%;
+        opacity: 1;
+        transition: all 500ms;
       }
 
     </style>
@@ -42,6 +52,32 @@
       }
       // loadBackground();
 
+      var imgNum = 1;
+
+      function preloadSerial() {
+        let fullResUrls = $(".replacer");
+        preload(fullResUrls);
+      }
+      function preload(fullResUrls, index) {
+        if (index === undefined) index = 0;
+        if (fullResUrls !== undefined && index < fullResUrls.length) {
+          let imgelt = fullResUrls.eq(index),
+              fullResSource = imgelt.data("fullres"),
+              preloadImg = new Image();
+          preloadImg.onload = function() {
+            // start preloading the next
+            preload(fullResUrls, index+1);
+            imgelt.attr('src', fullResSource);
+            imgelt.addClass("intermediate");
+            setTimeout(function() {
+              imgelt.addClass("loaded");
+              imgelt.removeClass("intermediate");
+            }, 500);
+          }
+          preloadImg.src = fullResSource;
+        }
+      }
+
       function makeDaddyProud() {
         $(".replacer").each(function() {
           const IMGELT = $(this);
@@ -55,9 +91,9 @@
               opacity: 0.7,
               width: "45%"
             }, {
-              duration: 800,
+              duration: 500,
               complete: () => { IMGELT.attr('src', fullResSource); }
-            }).fadeTo(800, 1, () => console.log("done fading in " + timeFromStart()));
+            }).fadeTo(500, 1, () => console.log("done fading in " + timeFromStart()));
 
             console.log(("finished swapping source " + timeFromStart()));
 
@@ -67,7 +103,8 @@
 
       $(function() {
         console.log("done loading document! " + timeFromStart());
-        makeDaddyProud();
+        makeDaddyProud(); // (preloadParallel)
+        // preloadSerial();
 
       })
 
@@ -79,26 +116,28 @@
   <body>
 <div id="container">
 
+  <!-- <img class="replacer thumb" data-fullres="https://i.4cdn.org/wg/1506017263977.jpg" src="https://i.4cdn.org/wg/1506017263977s.jpg">
+  <img class="replacer thumb" data-fullres="https://i.4cdn.org/wg/1505842096940.jpg" src="https://i.4cdn.org/wg/1505842096940s.jpg">
+  <img class="replacer thumb" data-fullres="https://i.4cdn.org/wg/1506016053953.jpg" src="https://i.4cdn.org/wg/1506016053953s.jpg">
+  <img class="replacer thumb" data-fullres="https://i.4cdn.org/wg/1504991693131.jpg" src="https://i.4cdn.org/wg/1504991693131s.jpg"> -->
 
-  <img class="thumb replacer" data-fullres="https://i.4cdn.org/wg/1506467933135.jpg" src="https://i.4cdn.org/wg/1506467933135s.jpg">
-  <img class="thumb replacer" data-fullres="https://i.4cdn.org/wg/1506468696319.jpg" src="https://i.4cdn.org/wg/1506468696319s.jpg">
-  <img class="thumb replacer" data-fullres="https://i.4cdn.org/wg/1503611505217.jpg" src="https://i.4cdn.org/wg/1503611505217s.jpg">
-  <img class="thumb replacer" data-fullres="https://i.4cdn.org/wg/1506260675210.jpg" src="https://i.4cdn.org/wg/1506260675210s.jpg">
-  <img class="thumb replacer" data-fullres="https://i.4cdn.org/wg/1506285926327.jpg" src="https://i.4cdn.org/wg/1506285926327s.jpg">
-  <img class="thumb replacer" data-fullres="https://i.4cdn.org/wg/1506290262622.png" src="https://i.4cdn.org/wg/1506290262622s.jpg">
-  <img class="thumb replacer" data-fullres="https://i.4cdn.org/wg/1506402785643.jpg" src="https://i.4cdn.org/wg/1506402785643s.jpg">
-  <img class="thumb replacer" data-fullres="https://i.4cdn.org/wg/1506468594139.png" src="https://i.4cdn.org/wg/1506468594139s.jpg">
-  <img class="thumb replacer" data-fullres="https://i.4cdn.org/wg/1506361903524.jpg" src="https://i.4cdn.org/wg/1506361903524s.jpg">
-  <img class="thumb replacer" data-fullres="https://i.4cdn.org/wg/1506454487598.jpg" src="https://i.4cdn.org/wg/1506454487598s.jpg">
-  <img class="thumb replacer" data-fullres="https://i.4cdn.org/wg/1506465089479.jpg" src="https://i.4cdn.org/wg/1506465089479s.jpg">
-  <img class="thumb replacer" data-fullres="https://i.4cdn.org/wg/1506465166529.jpg" src="https://i.4cdn.org/wg/1506465166529s.jpg">
-  <img class="thumb replacer" data-fullres="https://i.4cdn.org/wg/1506465237036.jpg" src="https://i.4cdn.org/wg/1506465237036s.jpg">
-  <img class="thumb replacer" data-fullres="https://i.4cdn.org/wg/1506261312355.jpg" src="https://i.4cdn.org/wg/1506261312355s.jpg">
-  <img class="thumb replacer" data-fullres="https://i.4cdn.org/wg/1506451819006.jpg" src="https://i.4cdn.org/wg/1506451819006s.jpg">
-  <img class="thumb replacer" data-fullres="https://i.4cdn.org/wg/1506453946063.jpg" src="https://i.4cdn.org/wg/1506453946063s.jpg">
-  <img class="thumb replacer" data-fullres="https://i.4cdn.org/wg/1506466190003.jpg" src="https://i.4cdn.org/wg/1506466190003s.jpg">
-  <img class="thumb replacer" data-fullres="https://i.4cdn.org/wg/1506466936742.gif" src="https://i.4cdn.org/wg/1506466936742s.jpg">
-  <img class="thumb replacer" data-fullres="https://i.4cdn.org/wg/1506468007972.jpg" src="https://i.4cdn.org/wg/1506468007972s.jpg">
+
+  <img class="thumb replacer" data-fullres="https://i.4cdn.org/wg/1506227800605.png" src="https://i.4cdn.org/wg/1506227800605s.jpg">
+<img class="thumb replacer" data-fullres="https://i.4cdn.org/wg/1506474447396.png" src="https://i.4cdn.org/wg/1506474447396s.jpg">
+<img class="thumb replacer" data-fullres="https://i.4cdn.org/wg/1506474591157.jpg" src="https://i.4cdn.org/wg/1506474591157s.jpg">
+<img class="thumb replacer" data-fullres="https://i.4cdn.org/wg/1506474881060.png" src="https://i.4cdn.org/wg/1506474881060s.jpg">
+<img class="thumb replacer" data-fullres="https://i.4cdn.org/wg/1506479543239.jpg" src="https://i.4cdn.org/wg/1506479543239s.jpg">
+<img class="thumb replacer" data-fullres="https://i.4cdn.org/wg/1506481167587.jpg" src="https://i.4cdn.org/wg/1506481167587s.jpg">
+<img class="thumb replacer" data-fullres="https://i.4cdn.org/wg/1505432058230.jpg" src="https://i.4cdn.org/wg/1505432058230s.jpg">
+<img class="thumb replacer" data-fullres="https://i.4cdn.org/wg/1506435681856.jpg" src="https://i.4cdn.org/wg/1506435681856s.jpg">
+<img class="thumb replacer" data-fullres="https://i.4cdn.org/wg/1506464258639.jpg" src="https://i.4cdn.org/wg/1506464258639s.jpg">
+<img class="thumb replacer" data-fullres="https://i.4cdn.org/wg/1506480606662.jpg" src="https://i.4cdn.org/wg/1506480606662s.jpg">
+<img class="thumb replacer" data-fullres="https://i.4cdn.org/wg/1506480678352.jpg" src="https://i.4cdn.org/wg/1506480678352s.jpg">
+<img class="thumb replacer" data-fullres="https://i.4cdn.org/wg/1506480786471.jpg" src="https://i.4cdn.org/wg/1506480786471s.jpg">
+<img class="thumb replacer" data-fullres="https://i.4cdn.org/wg/1505143879863.png" src="https://i.4cdn.org/wg/1505143879863s.jpg">
+<img class="thumb replacer" data-fullres="https://i.4cdn.org/wg/1505248096774.png" src="https://i.4cdn.org/wg/1505248096774s.jpg">
+<img class="thumb replacer" data-fullres="https://i.4cdn.org/wg/1506174456516.jpg" src="https://i.4cdn.org/wg/1506174456516s.jpg">
+<img class="thumb replacer" data-fullres="https://i.4cdn.org/wg/1506050343562.jpg" src="https://i.4cdn.org/wg/1506050343562s.jpg">
 
 
 </div>
