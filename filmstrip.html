@@ -22,6 +22,7 @@
       }
 
       .thumb-box {
+        overflow: hidden;
         height: 300px;
         width: 300px;
         display: inline-flex;
@@ -37,8 +38,8 @@
 
       .thumb {
         display: block;
-        max-width: 300px;
-        max-height: 300px;
+        max-width: 100%;
+        max-height: 100%;
       }
 
 
@@ -77,10 +78,15 @@
               console.log("loaded!");
               backgroundLoadSerialHelper(thumbnailObjs, index+1);
               imgElt.attr("src", fullResSource);
-              imgElt.removeClass("thumb-low-res");
               imgElt.addClass("thumb-hi-res");
+              imgElt.removeClass("thumb-low-res");
               setThumbnailPostLoadCSS(imgElt);
-            }
+            };
+            preloadImg.onerror = function() {
+              // console.warn("error loading fullres", imgElt.attr("src"));
+              backgroundLoadSerialHelper(thumbnailObjs, index+1);
+              removeThumbnailBoundingBox(imgElt);
+            };
             preloadImg.src = fullResSource;
           }
         }
@@ -88,32 +94,33 @@
         backgroundLoadSerialHelper(thumbnailObjs, 0);
       }
 
-      function setMaxDim(thumbnailObj, maxDimValue) {
-        let jqThumb = thumbnailObj,
-            domThumb = thumbnailObj.get(0),
+      function determineThumbnailDims(thumbnailObj, maxDimValue) {
+        let domThumb = thumbnailObj.get(0),
             width = domThumb.naturalWidth,
             height = domThumb.naturalHeight;
         if (width > height) {
-          jqThumb.css({
-            "width": maxDimValue,
-            "height": "auto",
-          });
-          jqThumb.data("maxdim", "width");
+          // thumbnailObj.data("maxdim", "width");
+          return {
+            width: maxDimValue,
+            height: "auto",
+          };
         } else {
-          jqThumb.css({
-            "height": maxDimValue,
-            "width": "auto",
-          });
-          jqThumb.data("maxdim", "height");
+          // thumbnailObj.data("maxdim", "height");
+          return {
+            width: "auto",
+            height: maxDimValue,
+          };
         }
       }
 
       function setThumbnailPreLoadCSS(thumbnailObj) {
-        let boundingBoxDim = $(".thumb-box").eq(0).css("width")
-        setMaxDim(thumbnailObj, boundingBoxDim);
+        const boundingBoxMaxDim = $(".thumb-box").eq(0).css("width");
+        const newDims = determineThumbnailDims(thumbnailObj, boundingBoxMaxDim);
 
         thumbnailObj.css({
           "opacity": 0.5,
+          "width": newDims.width,
+          "height": newDims.height,
         });
       }
       function setThumbnailPostLoadCSS(thumbnailObj) {
@@ -123,10 +130,23 @@
       }
 
       function prepThumbnails() {
-        let thumbs = $(".thumb-low-res");
-
-        thumbs.each(function() {
+        $(".thumb-low-res").each(function() {
           setThumbnailPreLoadCSS($(this));
+        });
+      }
+
+      function removeThumbnailBoundingBox(thumbnailObj) {
+        thumbnailObj.parent().parent().remove();
+      }
+
+      // handle image 404s
+      function removeBrokenThumbnails() {
+        $('.thumb').each(function() {
+          let imgElt = $(this).get(0);
+          if (imgElt.complete && imgElt.naturalWidth === 0) {
+            // console.warn("error loading lowres", $(this).attr("src"));
+            removeThumbnailBoundingBox($(this));
+          }
         });
       }
 
@@ -137,9 +157,9 @@
 
       // window ready (i.e., all images loaded, among other things)
       $(window).on('load', function() {
+        removeBrokenThumbnails();
         prepThumbnails();
         backgroundLoadSerial();
-        // backgroundLoad1SecInterval();
       });
 
     </script>
