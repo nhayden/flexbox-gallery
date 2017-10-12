@@ -42,6 +42,26 @@
         max-height: 100%;
       }
 
+      #back-to-top-btn {
+        font-size: 7vw;
+        display: none;
+        position: fixed;
+        bottom: 20px;
+        right: 30px;
+        z-index: 99;
+        border: none;
+        outline: none;
+        color: white;
+        cursor: pointer;
+        background-color: transparent;
+        border-radius: 10px;
+        opacity: 0.2;
+        text-shadow: 1px 2px 16px black;
+      }
+      #back-to-top-btn:hover {
+        opacity: 0.7;
+        transition: opacity 700ms;
+      }
 
     </style>
 
@@ -150,9 +170,30 @@
         });
       }
 
+      function setBackToTopBtnBehavior() {
+        const btn = $("#back-to-top-btn");
+        function setBackToTopBtnState(){
+          if (document.body.scrollTop > 30 || document.documentElement.scrollTop > 30) {
+            // document.querySelector("#back-to-top-btn").style.display = "block";
+            if(btn.get(0).style.display !== "block")
+              btn.fadeIn();
+          } else {
+            // document.querySelector("#back-to-top-btn").style.display = "none";
+            if (btn.get(0).display !== "none")
+              btn.fadeOut();
+          }
+        }
+        setBackToTopBtnState();
+        $(window).on('scroll', function() {
+          setBackToTopBtnState();
+
+        });
+      }
+
       // document ready
       $(function() {
-
+        // lowest priority
+        setBackToTopBtnBehavior();
       });
 
       // window ready (i.e., all images loaded, among other things)
@@ -160,7 +201,10 @@
         removeBrokenThumbnails();
         prepThumbnails();
         backgroundLoadSerial();
+
+
       });
+
 
     </script>
     <title>title</title>
@@ -223,5 +267,23 @@
 
     </div>
 
+    <button id="back-to-top-btn" title="Go back to top" onclick="(()=>{ $('html, body').animate({scrollTop: 0}, 'slow'); })();"><i class="fa fa-chevron-circle-up"></i></button>
+
+    <p>
+      <button onclick="(() => { const btn = $('#back-to-top-btn i'); btn.removeClass(); btn.addClass('fa fa-angle-double-up'); })();" type="button">angle-double-up</button>
+      <button onclick="(() => { const btn = $('#back-to-top-btn i'); btn.removeClass(); btn.addClass('fa fa-angle-up'); })();" type="button">angle-up</button>
+      <button onclick="(() => { const btn = $('#back-to-top-btn i'); btn.removeClass(); btn.addClass('fa fa-arrow-circle-o-up'); })();" type="button">arrow-circle-o-up</button>
+      <button onclick="(() => { const btn = $('#back-to-top-btn i'); btn.removeClass(); btn.addClass('fa fa-arrow-circle-up'); })();" type="button">arrow-circle-up</button>
+      <button onclick="(() => { const btn = $('#back-to-top-btn i'); btn.removeClass(); btn.addClass('fa fa-arrow-up'); })();" type="button">arrow-up</button>
+      <button onclick="(() => { const btn = $('#back-to-top-btn i'); btn.removeClass(); btn.addClass('fa fa-caret-up'); })();" type="button">caret-up</button>
+      <button onclick="(() => { const btn = $('#back-to-top-btn i'); btn.removeClass(); btn.addClass('fa fa-caret-square-o-up'); })();" type="button">caret-square-o-up</button>
+      <button onclick="(() => { const btn = $('#back-to-top-btn i'); btn.removeClass(); btn.addClass('fa fa-chevron-circle-up'); })();" type="button">chevron-circle-up</button>
+      <button onclick="(() => { const btn = $('#back-to-top-btn i'); btn.removeClass(); btn.addClass('fa fa-chevron-up'); })();" type="button">chevron-up</button>
+      <button onclick="(() => { const btn = $('#back-to-top-btn i'); btn.removeClass(); btn.addClass('fa fa-hand-o-up'); })();" type="button">hand-o-up</button>
+      <button onclick="(() => { const btn = $('#back-to-top-btn i'); btn.removeClass(); btn.addClass('fa fa-long-arrow-up'); })();" type="button">long-arrow-up</button>
+
+    </p>
+
+    <script async src="https://use.fontawesome.com/10ae14b244.js"></script>
   </body>
 </html>
