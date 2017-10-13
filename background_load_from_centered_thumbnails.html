@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" type="text/css" href=""> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title>title</title>
+
+    <style>
+
+      html {
+        font-size: 10px;
+        /*background: url(images/wood_background_dark40.jpg) no-repeat center center fixed;
+        background-size: cover;*/
+      }
+
+      #container {
+        display: flex;
+        flex-flow: column wrap;
+        align-items: center;
+        justify-content: space-around;
+      }
+
+      #container div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        width: 40%;
+        min-height: 400px;
+        /*border: 3px solid red;*/
+      }
+      .full-anchor {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        /*border: 3px solid orange;*/
+      }
+
+    </style>
+
+    <script type="text/javascript">
+
+
+
+      $(window).on('load', function() {
+        // console.log("done loading window! " + timeFromStart());
+        $(".thumb").each(function(index) {
+          const IMGELT = $(this);
+          const FULLRES = $(this).data('fullres');
+          $(new Image()).attr({
+            'src': FULLRES
+          }).one('load', function() {
+            console.log("loaded!");
+
+            IMGELT.attr("src", FULLRES);
+            // IMGELT.toggleClass("loaded");
+            IMGELT.css({
+              "width": "100%",
+              "transition": "all 700ms"
+            });
+          })
+        });
+      });
+    </script>
+  </head>
+  <body>
+<div id="container">
+
+  <!-- <img class="replacer thumb" data-fullres="https://i.4cdn.org/wg/1506017263977.jpg" src="https://i.4cdn.org/wg/1506017263977s.jpg">
+  <img class="replacer thumb" data-fullres="https://i.4cdn.org/wg/1505842096940.jpg" src="https://i.4cdn.org/wg/1505842096940s.jpg">
+  <img class="replacer thumb" data-fullres="https://i.4cdn.org/wg/1506016053953.jpg" src="https://i.4cdn.org/wg/1506016053953s.jpg">
+  <img class="replacer thumb" data-fullres="https://i.4cdn.org/wg/1504991693131.jpg" src="https://i.4cdn.org/wg/1504991693131s.jpg"> -->
+
+
+<div><a class="full-anchor" href="https://i.4cdn.org/wg/1506227800605.png"><img style="width: 250px;" class="thumb replacer" data-fullres="https://i.4cdn.org/wg/1506227800605.png" src="https://i.4cdn.org/wg/1506227800605s.jpg"></a></div>
+<div><a class="full-anchor" href="https://i.4cdn.org/wg/1506474591157.jpg"><img style="width: 125px;" class="thumb replacer" data-fullres="https://i.4cdn.org/wg/1506474591157.jpg" src="https://i.4cdn.org/wg/1506474591157s.jpg"></a></div>
+<div><a class="full-anchor" href="https://i.4cdn.org/wg/1506481167587.jpg"><img style="width: 125px;" class="thumb replacer" data-fullres="https://i.4cdn.org/wg/1506481167587.jpg" src="https://i.4cdn.org/wg/1506481167587s.jpg"></a></div>
+<div><a class="full-anchor" href="https://i.4cdn.org/wg/1505432058230.jpg"><img style="width: 250px;" class="thumb replacer" data-fullres="https://i.4cdn.org/wg/1505432058230.jpg" src="https://i.4cdn.org/wg/1505432058230s.jpg"></a></div>
+
+
+
+<!-- <img class="thumb replacer" data-fullres="https://i.4cdn.org/wg/1506435681856.jpg" src="https://i.4cdn.org/wg/1506435681856s.jpg">
+<img class="thumb replacer" data-fullres="https://i.4cdn.org/wg/1506464258639.jpg" src="https://i.4cdn.org/wg/1506464258639s.jpg">
+<img class="thumb replacer" data-fullres="https://i.4cdn.org/wg/1506480606662.jpg" src="https://i.4cdn.org/wg/1506480606662s.jpg">
+<img class="thumb replacer" data-fullres="https://i.4cdn.org/wg/1506480678352.jpg" src="https://i.4cdn.org/wg/1506480678352s.jpg">
+<img class="thumb replacer" data-fullres="https://i.4cdn.org/wg/1506480786471.jpg" src="https://i.4cdn.org/wg/1506480786471s.jpg">
+<img class="thumb replacer" data-fullres="https://i.4cdn.org/wg/1505143879863.png" src="https://i.4cdn.org/wg/1505143879863s.jpg">
+<img class="thumb replacer" data-fullres="https://i.4cdn.org/wg/1505248096774.png" src="https://i.4cdn.org/wg/1505248096774s.jpg">
+<img class="thumb replacer" data-fullres="https://i.4cdn.org/wg/1506174456516.jpg" src="https://i.4cdn.org/wg/1506174456516s.jpg">
+<img class="thumb replacer" data-fullres="https://i.4cdn.org/wg/1506050343562.jpg" src="https://i.4cdn.org/wg/1506050343562s.jpg">
+ -->
+
+</div>
+
+
+<script>
+
+
+
+
+
+</script>
+  </body>
+</html>
