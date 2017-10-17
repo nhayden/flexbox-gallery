@@ -3,14 +3,27 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Six+Caps' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Dosis' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Josefin+Sans' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Arsenal' rel='stylesheet' type='text/css'>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!-- <link rel="stylesheet" type="text/css" href=""> -->
 
     <style>
 
       body {
+        font-family: 'Poiret One', sans-serif;
         font-size: 10px;
         background-color: #060606;
+      }
+
+      header {
+        background-color: hsla(0, 0%, 29%, 0.5);
+        color: rgba(255, 255, 255, 0.9);
       }
 
       #center {
@@ -226,13 +239,21 @@
   </head>
   <body>
 
-    <p>
-      <button onclick="(() => {document.querySelector('#center').style.justifyContent = 'center';})();" type="button">centered</button>
-      <button onclick="(() => {document.querySelector('#center').style.justifyContent = 'space-around';})();" type="button">space-around</button>
-      <button onclick="(() => {document.querySelector('#center').style.justifyContent = 'space-between';})();" type="button">space-between</button>
-      <button onclick="(() => {document.querySelector('#center').style.justifyContent = 'flex-start';})();" type="button">start</button>
-      <button onclick="(() => {document.querySelector('#center').style.justifyContent = 'flex-end';})();" type="button">end</button>
-    </p>
+    <div id="buttons" style="padding-bottom: 100px;">
+      <button onclick="(() => {$('body').css('font-family', '&quot;Poiret One&quot;, sans-serif');})();" type="button">Poiret One</button>
+      <button onclick="(() => {$('body').css('font-family', '&quot;Six Caps&quot;, sans-serif');})();" type="button">Six Caps</button>
+      <button onclick="(() => {$('body').css('font-family', '&quot;Ubuntu&quot;, sans-serif');})();" type="button">Ubuntu</button>
+      <button onclick="(() => {$('body').css('font-family', '&quot;Dosis&quot;, sans-serif');})();" type="button">Dosis</button>
+      <button onclick="(() => {$('body').css('font-family', '&quot;Josefin Sans&quot;, sans-serif');})();" type="button">Joesefin Sans</button>
+      <button onclick="(() => {$('body').css('font-family', '&quot;Lobster&quot;, sans-serif');})();" type="button">Lobster</button>
+      <button onclick="(() => {$('body').css('font-family', '&quot;Arsenal&quot;, sans-serif');})();" type="button">Arsenal</button>
+    </div>
+
+
+
+    <header style="padding: 1.5em;">
+      <h1 style="font-size: 3em;">Tappezzare Wallpaper Aggregator</h1>
+    </header>
 
     <div id="center">
 
