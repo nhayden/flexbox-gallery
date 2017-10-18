@@ -24,6 +24,11 @@
       header {
         background-color: hsla(0, 0%, 29%, 0.5);
         color: rgba(255, 255, 255, 0.9);
+        padding: 3em 3em 3em 6em;
+      }
+      h1 {
+        font-size: 3em;
+        text-shadow: 1px 1px 2px grey;
       }
 
       #center {
@@ -42,7 +47,7 @@
         justify-content: center;
         align-items: center;
         padding: 1em 1em;
-        border-bottom: 7px solid hsla(0, 0%, 29%, 0.5);
+        border-bottom: 7px solid #2e2e2e;
       }
 
       .full-anchor {
@@ -220,6 +225,8 @@
 
       // document ready
       $(function() {
+        stretchHeaderToFullWidth();
+
         // lowest priority
         setBackToTopBtnBehavior();
       });
@@ -230,7 +237,37 @@
         prepThumbnails();
         backgroundLoadSerial();
 
+      });
 
+      function stretchHeaderToFullWidth() {
+        var bodyStyle = window.getComputedStyle(document.querySelector('body'));
+        var marginL = bodyStyle.getPropertyValue("margin-left");
+        var marginR = bodyStyle.getPropertyValue("margin-right");
+        var marginT = bodyStyle.getPropertyValue("margin-top");
+        $('header').css({
+          "margin-left": "-" + marginL,
+          "margin-right": "-" + marginR,
+          "margin-top": "-" + marginT,
+        });
+      }
+
+      $(document).on('keypress', function(e) {
+        var fonts = {
+          "49": "Poiret One",
+          "50": "Six Caps",
+          "51": "Ubuntu",
+          "52": "Dosis",
+          "53": "Josefin Sans",
+          "54": "Lobster",
+          "55": "Arsenal",
+        };
+        if (Object.keys(fonts).indexOf("" + e.keyCode) !== -1) {
+          var font = fonts[""+e.keyCode];
+          if (font === "Six Caps") $('header').css("letter-spacing", "4px");
+          else $('header').css("letter-spacing", "normal");
+          console.log(font);
+          $('header').css('font-family', `'${font}', 'sans-serif'`);
+        }
       });
 
 
@@ -239,20 +276,8 @@
   </head>
   <body>
 
-    <div id="buttons" style="padding-bottom: 100px;">
-      <button onclick="(() => {$('body').css('font-family', '&quot;Poiret One&quot;, sans-serif');})();" type="button">Poiret One</button>
-      <button onclick="(() => {$('body').css('font-family', '&quot;Six Caps&quot;, sans-serif');})();" type="button">Six Caps</button>
-      <button onclick="(() => {$('body').css('font-family', '&quot;Ubuntu&quot;, sans-serif');})();" type="button">Ubuntu</button>
-      <button onclick="(() => {$('body').css('font-family', '&quot;Dosis&quot;, sans-serif');})();" type="button">Dosis</button>
-      <button onclick="(() => {$('body').css('font-family', '&quot;Josefin Sans&quot;, sans-serif');})();" type="button">Joesefin Sans</button>
-      <button onclick="(() => {$('body').css('font-family', '&quot;Lobster&quot;, sans-serif');})();" type="button">Lobster</button>
-      <button onclick="(() => {$('body').css('font-family', '&quot;Arsenal&quot;, sans-serif');})();" type="button">Arsenal</button>
-    </div>
-
-
-
-    <header style="padding: 1.5em;">
-      <h1 style="font-size: 3em;">Tappezzare Wallpaper Aggregator</h1>
+    <header>
+      <h1>Tappezzare: just wallpapers &mdash; no bullshit</h1>
     </header>
 
     <div id="center">
