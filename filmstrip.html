@@ -19,11 +19,11 @@
         font-family: 'Poiret One', sans-serif;
         font-size: 10px;
         background-color: #060606;
+        color: #efefef;
       }
 
       header {
-        background-color: hsla(0, 0%, 29%, 0.5);
-        color: rgba(255, 255, 255, 0.9);
+        background-color: #2e2e2e;
         padding: 3em 3em 3em 6em;
       }
       h1 {
@@ -34,12 +34,13 @@
       #center {
         display: flex;
         flex-flow: row wrap;
-        justify-content: center;
+        justify-content: space-around;
         align-items: center;
         background-color: #060606;
       }
 
       .thumb-box {
+        position: relative;
         overflow: hidden;
         height: 300px;
         width: 300px;
@@ -48,6 +49,7 @@
         align-items: center;
         padding: 1em 1em;
         border-bottom: 7px solid #2e2e2e;
+        flex-direction: column;
       }
 
       .full-anchor {
@@ -58,6 +60,17 @@
         display: block;
         max-width: 100%;
         max-height: 100%;
+      }
+
+      .thumb-info {
+        font-family: sans-serif;
+        position: absolute;
+        color: white;
+        font-size: 2em;
+        top: calc(225px + 1em);
+        width: calc(100% - 2em);
+        padding-left: 1em;
+        opacity: 0;
       }
 
 
@@ -237,6 +250,28 @@
         prepThumbnails();
         backgroundLoadSerial();
 
+        (function() {
+          var outbox = $('.thumb-box').eq(0);
+          var eltHt = parseInt($('.thumb-info').eq(0).css('height'), 10);
+          var oldtop = parseInt($('.thumb-info').css("top"));
+          var newtop = oldtop - eltHt;
+          console.log(newtop);
+          outbox.on('mouseenter', function() {
+            $('.thumb-info').css({
+              "top": newtop + "px",
+              "opacity": "1",
+              transition: "opacity 0.5s",
+            });
+          })
+          outbox.on('mouseleave', function() {
+            $('.thumb-info').css({
+              "top": oldtop + "px",
+              "opacity": "0",
+              transition: "opacity 0.3s, top 0.1s 0.3s",
+            });
+          })
+        })();
+
       });
 
       function stretchHeaderToFullWidth() {
@@ -282,7 +317,12 @@
 
     <div id="center">
 
-<div class="thumb-box"><a class="full-anchor" href="https://i.4cdn.org/wg/1507153142598.jpg"><img class="thumb thumb-low-res" data-fullres="https://i.4cdn.org/wg/1507153142598.jpg" src="https://i.4cdn.org/wg/1507153142598s.jpg"></a></div>
+<div class="thumb-box">
+  <a class="full-anchor" href="https://i.4cdn.org/wg/1507153142598.jpg">
+    <img class="thumb thumb-low-res" data-fullres="https://i.4cdn.org/wg/1507153142598.jpg" src="https://i.4cdn.org/wg/1507153142598s.jpg">
+  </a>
+  <div class="thumb-info"><span class="res">Wow</span></div>
+</div>
 <div class="thumb-box"><a class="full-anchor" href="https://i.4cdn.org/wg/1507387781224.png"><img class="thumb thumb-low-res" data-fullres="https://i.4cdn.org/wg/1507387781224.png" src="https://i.4cdn.org/wg/1507387781224s.jpg"></a></div>
 <div class="thumb-box"><a class="full-anchor" href="https://i.4cdn.org/wg/1507388825407.jpg"><img class="thumb thumb-low-res" data-fullres="https://i.4cdn.org/wg/1507388825407.jpg" src="https://i.4cdn.org/wg/1507388825407s.jpg"></a></div>
 <div class="thumb-box"><a class="full-anchor" href="https://i.4cdn.org/wg/1507393436293.jpg"><img class="thumb thumb-low-res" data-fullres="https://i.4cdn.org/wg/1507393436293.jpg" src="https://i.4cdn.org/wg/1507393436293s.jpg"></a></div>
