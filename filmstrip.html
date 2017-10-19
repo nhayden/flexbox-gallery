@@ -40,7 +40,6 @@
       }
 
       .thumb-box {
-        position: relative;
         overflow: hidden;
         height: 300px;
         width: 300px;
@@ -50,6 +49,11 @@
         padding: 1em 1em;
         border-bottom: 7px solid #2e2e2e;
         flex-direction: column;
+      }
+
+      .bounder {
+        position: relative;
+        overflow: hidden;
       }
 
       .full-anchor {
@@ -67,10 +71,10 @@
         position: absolute;
         color: white;
         font-size: 2em;
-        top: calc(225px + 1em);
-        width: calc(100% - 2em);
-        padding-left: 1em;
-        opacity: 0;
+        bottom: -2em;
+        background: rgba(0, 0, 0, 0.3);
+        padding-left: 10px;
+        opacity: 1;
       }
 
 
@@ -188,6 +192,8 @@
           "width": newDims.width,
           "height": newDims.height,
         });
+        // console.log(window.getComputedStyle(thumbnailObj.get(0)).getPropertyValue('height'));
+        // console.log(window.getComputedStyle(thumbnailObj.get(0)).getPropertyValue('width'));
       }
       function setThumbnailPostLoadCSS(thumbnailObj) {
         thumbnailObj.css({
@@ -251,23 +257,17 @@
         backgroundLoadSerial();
 
         (function() {
-          var outbox = $('.thumb-box').eq(0);
-          var eltHt = parseInt($('.thumb-info').eq(0).css('height'), 10);
-          var oldtop = parseInt($('.thumb-info').css("top"));
-          var newtop = oldtop - eltHt;
-          console.log(newtop);
+          var outbox = $('.bounder');
+          $('.thumb-info').css("width", (parseInt(outbox.css("width"), 10) - 10) + "px");
           outbox.on('mouseenter', function() {
             $('.thumb-info').css({
-              "top": newtop + "px",
-              "opacity": "1",
-              transition: "opacity 0.5s",
+              bottom: "0px",
+              transition: "bottom 0.3s",
             });
           })
           outbox.on('mouseleave', function() {
             $('.thumb-info').css({
-              "top": oldtop + "px",
-              "opacity": "0",
-              transition: "opacity 0.3s, top 0.1s 0.3s",
+              bottom: "-2em",
             });
           })
         })();
@@ -318,10 +318,12 @@
     <div id="center">
 
 <div class="thumb-box">
-  <a class="full-anchor" href="https://i.4cdn.org/wg/1507153142598.jpg">
-    <img class="thumb thumb-low-res" data-fullres="https://i.4cdn.org/wg/1507153142598.jpg" src="https://i.4cdn.org/wg/1507153142598s.jpg">
-  </a>
-  <div class="thumb-info"><span class="res">Wow</span></div>
+  <div class="bounder">
+    <a class="full-anchor" href="https://i.4cdn.org/wg/1507153142598.jpg">
+      <img class="thumb thumb-low-res" data-fullres="https://i.4cdn.org/wg/1507153142598.jpg" src="https://i.4cdn.org/wg/1507153142598s.jpg">
+    </a>
+    <div class="thumb-info"><span class="res">Wow</span></div>
+  </div>
 </div>
 <div class="thumb-box"><a class="full-anchor" href="https://i.4cdn.org/wg/1507387781224.png"><img class="thumb thumb-low-res" data-fullres="https://i.4cdn.org/wg/1507387781224.png" src="https://i.4cdn.org/wg/1507387781224s.jpg"></a></div>
 <div class="thumb-box"><a class="full-anchor" href="https://i.4cdn.org/wg/1507388825407.jpg"><img class="thumb thumb-low-res" data-fullres="https://i.4cdn.org/wg/1507388825407.jpg" src="https://i.4cdn.org/wg/1507388825407s.jpg"></a></div>
