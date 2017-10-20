@@ -137,9 +137,10 @@
       }
 
       function backgroundLoadSerial() {
-        let thumbnailObjs = $(".thumb-low-res");
+        let thumbnailObjs = $("img.thumb-low-res");
+        let thumbInfoObjs = $('div.thumb-info');
 
-        function backgroundLoadSerialHelper(thumbnailObjs, index) {
+        (function backgroundLoadSerialHelper(index) {
           if (index === undefined) index = 0;
           if (thumbnailObjs !== undefined && index < thumbnailObjs.length) {
             let imgElt = thumbnailObjs.eq(index),
@@ -147,7 +148,8 @@
                 preloadImg = new Image();
             preloadImg.onload = function() {
               console.log("loaded!");
-              backgroundLoadSerialHelper(thumbnailObjs, index+1);
+              backgroundLoadSerialHelper(index+1);
+              thumbInfoObjs.eq(index).children(0).text(preloadImg.naturalWidth + " x " + preloadImg.naturalHeight);
               imgElt.attr("src", fullResSource);
               imgElt.addClass("thumb-hi-res");
               imgElt.removeClass("thumb-low-res");
@@ -155,14 +157,13 @@
             };
             preloadImg.onerror = function() {
               // console.warn("error loading fullres", imgElt.attr("src"));
-              backgroundLoadSerialHelper(thumbnailObjs, index+1);
+              backgroundLoadSerialHelper(index+1);
               removeThumbnailBoundingBox(imgElt);
             };
             preloadImg.src = fullResSource;
           }
-        }
+        })(0);
 
-        backgroundLoadSerialHelper(thumbnailObjs, 0);
       }
 
       function determineThumbnailDims(thumbnailObj, maxDimValue) {
@@ -260,7 +261,7 @@
 
         (function setupThumbInfos() {
           function getDimString(bounderObj) {
-            console.log(bounderObj.find('img').get(0).naturalWidth);
+            // console.log(bounderObj.find('img').get(0).naturalWidth);
           }
           $('div.bounder').each(function(idx, elt) {
             var bounderWidthPx = parseFloat(window.getComputedStyle(elt)
@@ -270,7 +271,7 @@
                 dthumbInfo = jthumbInfo.get(0);
             var paddingLeftPx = parseFloat(window.getComputedStyle(dthumbInfo)
               .getPropertyValue("padding-left"), 10);
-            dthumbInfo.style.width = bounderWidthPx - paddingLeftPx + "px";
+            dthumbInfo.style.width = bounderWidthPx - paddingLeftPx+1 + "px";
             $(this).on('mouseenter', function() {
               jthumbInfo.css({
                 "opacity": "1",
