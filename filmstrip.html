@@ -204,7 +204,7 @@
 
       function prepThumbnails() {
 
-        $(".thumb-low-res").each(function() {
+        $("img.thumb-low-res").each(function() {
           setThumbnailPreLoadCSS($(this));
         });
       }
@@ -215,7 +215,7 @@
 
       // handle image 404s
       function removeBrokenThumbnails() {
-        $('.thumb').each(function() {
+        $('img.thumb').each(function() {
           let imgElt = $(this).get(0);
           if (imgElt.complete && imgElt.naturalWidth === 0) {
             // console.warn("error loading lowres", $(this).attr("src"));
@@ -258,20 +258,34 @@
         prepThumbnails();
         backgroundLoadSerial();
 
-        (function() {
-          var outbox = $('.bounder');
-          $('.thumb-info').css("width", (parseInt(outbox.css("width"), 10) - 10) + "px");
-          outbox.on('mouseenter', function() {
-            $('.thumb-info').css({
-              bottom: "0px",
-              transition: "bottom 0.3s",
+        (function setupThumbInfos() {
+          function getDimString(bounderObj) {
+            console.log(bounderObj.find('img').get(0).naturalWidth);
+          }
+          $('div.bounder').each(function(idx, elt) {
+            var bounderWidthPx = parseFloat(window.getComputedStyle(elt)
+              .getPropertyValue("width"), 10);
+            getDimString($(this));
+            var jthumbInfo = $(this).find("div.thumb-info"),
+                dthumbInfo = jthumbInfo.get(0);
+            var paddingLeftPx = parseFloat(window.getComputedStyle(dthumbInfo)
+              .getPropertyValue("padding-left"), 10);
+            dthumbInfo.style.width = bounderWidthPx - paddingLeftPx + "px";
+            $(this).on('mouseenter', function() {
+              jthumbInfo.css({
+                "opacity": "1",
+                "bottom": "0px",
+                "transition": "bottom 0.3s",
+              });
             });
-          })
-          outbox.on('mouseleave', function() {
-            $('.thumb-info').css({
-              bottom: "-2em",
+            $(this).on('mouseleave', function() {
+              jthumbInfo.css({
+                "opacity": "0",
+                "bottom": "-2em",
+                "transition": "opacity 0.2s, bottom 0s 0.25s",
+              });
             });
-          })
+          });
         })();
 
       });
