@@ -4,7 +4,9 @@ A responsive photo gallery especially suited to large images that takes advantag
 ![screenshot of flexbox gallery](screenshot.png)
 
 Features include:
-* responsive grid that handles different image aspect ratios smoothly
+* modern design
+* subtle loading animations
+* responsive grid, handles different image aspect ratios smoothly
 * customizable slide-up tooltips
 * optimized background loading of high resolution images from thumbnails
 * enhanced feedback when loading large images
