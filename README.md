@@ -10,3 +10,4 @@ Features include:
 * customizable slide-up tooltips
 * optimized background loading of high resolution images from thumbnails
 * enhanced feedback when loading large images
+* automatic handling of broken image links
